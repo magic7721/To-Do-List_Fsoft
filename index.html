@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>To-Do List</h2>
+    <p>Enter text into the input field to add items your list.</p>
+    <p>Click the "X" to remove the item from your list</p>
+    <p>Click the item to mark it as compelete</p>
+    <from action = "">
+        <div style="display: flex;">
+            <input type = "text" id = "input" value="">
+            <span id = "addwork">+</span>
+        </div>
+        
+    </from>
+    <ul id = "listwork"></ul>
+    <script>
+        let listwork = [];
+        let submitButton = document.getElementById('addwork');
+        let ul = document.getElementById('listwork');
+        let network = '';
+        let index = -1;
+
+        submitButton.addEventListener('click', () => {
+            network = document.getElementById('input').value;
+            listwork.push(network);
+            index ++;
+            showListWork();
+        });
+        var myNodelist = document.getElementsByTagName("LI");
+        function showListWork(){
+            console.log(listwork.length)
+            console.log("ok");
+                var div = document.createElement("div")
+                div.className = "close";
+                var button = document.createElement("span");
+                button.className = "buttonClose";
+                button.innerHTML = "x"
+                div.innerHTML = listwork[index]
+                div.appendChild(button)
+                document.getElementById("listwork").appendChild(div)
+            var close  = document.getElementsByClassName("buttonClose")
+            var hiden = document.getElementsByClassName("close")
+            for(var i = 0 ; i< listwork.length ; i++){
+
+                close[i].onclick = function(){
+                    listwork.splice(i,1);
+                    this.parentElement.style.display = "none";
+                }
+            } 
+            
+        }
+        
+           
+    </script>
+    <style>
+      
+        input{
+            text-align: center;
+        }
+        body{
+
+            border: 1px solid black;
+            width : 400px;
+            height: 400px;
+            padding: 20px;
+        }
+        h2{
+            margin-top: 5px;
+            text-align: center;
+        }
+        p{
+            text-align: center;
+        }
+
+        #addwork{
+            display: block;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: blue solid 1px;
+            margin-left: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: blue;
+            cursor: pointer;
+        }
+
+        form{
+            display: flex;
+        }
+        .close{
+            width: 300px;
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            background-color: rgb(173, 198, 230);
+            align-items: center;
+            color: black;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        .close span{
+            cursor: pointer;
+        }
+
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin:  0 auto;
+        }
+    </style>
+</body>
+</html>
